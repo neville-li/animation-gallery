@@ -8,7 +8,4 @@ import "./styles/styles.scss";
 
 ReactDOM.render(<CanvasGalleryApp />, document.querySelector("#root"));
 
-// for (let canvas of canvases){
-//     canvas();
-// }
 

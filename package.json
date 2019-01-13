@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack",
     "watch": "webpack --watch",
-    "live-server": "live-server public"
+    "live-server": "live-server index.html"
   },
   "author": "Neville Li",
   "license": "ISC",
