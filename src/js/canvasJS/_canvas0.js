@@ -1,76 +1,64 @@
-function canvas0() {
+const canvas0 = () => {
+
     const canvas = document.querySelector("#canvas0");
 
-    const height = canvas.offsetHeight;
-    const width = canvas.offsetWidth;
+    const height = canvas.clientHeight;
+    const width = canvas.clientWidth;
+    canvas.style.background = "linear-gradient(to bottom, #131862, #546bab)";
     canvas.setAttribute('width', width);
     canvas.setAttribute('height', height);
 
     const c = canvas.getContext("2d");
+    let circles = [];
 
-    const maxWidth = width / 4;
-    const maxHeight = height / 8;
-    const paddingX = width / 15;
+    class Circle {
+        constructor(dx, dy, radius, color){
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            this.dx = dx;
+            this.dy = Math.random() * dy + 0.5;
+            this.radius = radius;
+            this.color = color;
+        }
+        draw(){
+            c.beginPath();
+            c.strokeStyle = this.color;
+            c.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, true);
+            c.fillStyle = this.color;
+            c.fill();
+            c.stroke();
+        }
+        update(){
+            this.y += this.dy;
+            this.x += this.dx;
+            if(this.y - this.radius > height ){
+                this.x = Math.random() * width;
+                this.y = 0;
+            }
+            if(this.x - this.radius > width ){
+                this.x = 0;
+                this.y = Math.random() * height;
+            } 
+        }
+    }
 
-    const lineStartX = paddingX;
-    const lineStartY = height / 4;
-
-    const arcStartX = (width * 2 / 3 + width * 1 / 3) / 2;
-    const arcStartY = height / 4;
-
-
-    //Lines
-    c.beginPath();
-    c.moveTo(lineStartX, lineStartY);
-    c.lineTo(lineStartX + maxWidth, lineStartY);
-    c.stroke();
-
-    c.beginPath();
-    c.strokeStyle = "blue";
-    c.lineWidth = 10;
-    c.lineCap = "round";
-    c.moveTo(lineStartX, lineStartY + maxHeight);
-    c.lineTo(lineStartX + maxWidth, lineStartY + maxHeight);
-    c.stroke();
-
-    c.beginPath();
-    c.strokeStyle = "red";
-    c.lineJoin = "round";
-    c.lineWidth = 2;
-    c.moveTo(lineStartX, lineStartY + (2 * maxHeight));
-    c.lineTo(lineStartX + maxWidth / 3, lineStartY + (2 * maxHeight) - maxHeight / 2);
-    c.lineTo(lineStartX + maxWidth * 2 / 3, lineStartY + (2 * maxHeight) + maxHeight / 2);
-    c.lineTo(lineStartX + maxWidth, lineStartY + (2 * maxHeight));
-    c.stroke();
-
-    c.beginPath();
-    c.strokeStyle = "purple";
-    c.lineJoin = "round";
-    c.lineWidth = 2;
-    c.moveTo(lineStartX, lineStartY + (3 * maxHeight));
-    c.lineTo(lineStartX + maxWidth, lineStartY + (3 * maxHeight));
-    c.lineTo(lineStartX + maxWidth, lineStartY + (3 * maxHeight) + maxHeight);
-    c.lineTo(lineStartX, lineStartY + (3 * maxHeight) + maxHeight);
-    c.lineTo(lineStartX, lineStartY + (3 * maxHeight));
-    c.fillStyle = "yellow";
-    c.fill();
-    c.stroke();
-
-    //Arcs
-    //context.arc(x, y, radius, startAngle, endAngle, counterClockwise);
-    // angles in radian
-
-    c.beginPath();
-    c.strokeStyle = "black";
-    c.arc(arcStartX, arcStartY, maxHeight / 2, Math.PI, 0, true);
-    c.stroke();
-
-    c.beginPath();
-    c.strokeStyle = "black";
-    c.arc(arcStartX, arcStartY + 2 * maxHeight, maxHeight / 2, 0, 2 * Math.PI, true);
-    c.fillStyle = 'cyan';
-    c.fill();
-    c.stroke();
+    for(let i = 0; i < width/20 ; i++){
+        circles.push(new Circle(1, 2.5, 4, "rgba(255,255,255,1)"));
+        circles.push(new Circle(0.7, 2, 3, "rgba(255,255,255,0.7)"));
+        circles.push(new Circle(0.3, 1.5, 2, "rgba(255,255,255,0.5)"));
+    }
+    
+    const animate = () => {
+        requestAnimationFrame(animate);
+        c.clearRect(0, 0, width, height);
+        circles.forEach(circle => {
+            circle.update();
+        });
+        circles.forEach(circle => {
+            circle.draw();
+        });
+    }
+    animate();
 }
 
 

@@ -1,14 +1,14 @@
 import React from "react";
 
-import Drawings from "./Drawings";
+import Drawing from "./Drawing";
 import Navbar from "./Navbar";
+
 
 class CanvasGalleryApp extends React.Component {
     render() {
         return (
             <div>
-                <Navbar />
-                <Drawings />
+                <Drawing drawingID={0}/>
             </div>
         );
     }

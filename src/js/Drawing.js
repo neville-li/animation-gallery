@@ -1,11 +1,18 @@
 import React from "react";
+import canvases from "./canvasJS/canvas";
 
-const Drawing = (props) => {
-    return (
+class Drawing extends React.Component {
+
+    componentDidMount(){
+        canvases[this.props.drawingID]();
+    }
+
+    render(){
+        return (
         <div>
-            <canvas className="drawing" id={`canvas${props.drawingID}`}></canvas>
+            <canvas className="drawing" id={`canvas${this.props.drawingID}`}></canvas>
         </div>   
-    );
+    )}
 }
 
 export default Drawing;
