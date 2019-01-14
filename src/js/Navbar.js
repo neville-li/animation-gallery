@@ -1,23 +1,24 @@
 import React from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const NavBar = (props) => {
     return (
         <nav className="nav">
             <ul className="nav__navbar">
                 <li>
-                    <a href="#">First</a>
+                    <a href="#"><FontAwesomeIcon icon="angle-double-left" /></a>
                 </li>
                 <li>
-                    <a href="#">Previous</a>
+                    <a href="#"><FontAwesomeIcon icon="angle-left" /></a>
                 </li>
                 <li>
-                    <input type="text" maxLength="2"className="nav__navbar__input" placeholder={props.pageNumber}></input><span>/100</span>
+                    <input type="text" maxLength="2" className="nav__navbar__input" placeholder={props.pageNumber}></input><span>/100</span>
                 </li>
                 <li>
-                    <a href="#">Next</a>
+                    <a href="#"><FontAwesomeIcon icon="angle-right" /></a>
                 </li>
                 <li>
-                    <a href="#">Last</a>
+                    <a href="#"><FontAwesomeIcon icon="angle-double-right" /></a>
                 </li>
             </ul>
         </nav>

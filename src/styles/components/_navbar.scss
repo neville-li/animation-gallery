@@ -12,6 +12,10 @@
         opacity: 0.3;
     }
 
+    input:hover {
+        border: 1px solid black;
+    }
+
     &__navbar {
         display:flex;
         flex-direction: row;
@@ -22,6 +26,7 @@
         margin: 0 auto;
         list-style: none;
         font-size: 3.6rem;
+        align-items: center; 
 
         &__input {
             width: 20px;
