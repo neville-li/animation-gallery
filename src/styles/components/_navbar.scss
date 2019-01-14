@@ -1,5 +1,32 @@
-.navbar {
+.nav {
+    width: 50%;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    bottom: 0;
+    transform: translateX(50%);
     height: 5vh;
-    width: 100%;
-    background-color: orange;
+    border-radius: 15px;
+    opacity: 0.15;
+
+    &:hover {
+        opacity: 0.3;
+    }
+
+    &__navbar {
+        display:flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        height: 100%;
+        width: 50%;
+        margin: 0 auto;
+        list-style: none;
+        font-size: 3.6rem;
+
+        &__input {
+            width: 20px;
+            border:none;
+        }
+    }
 }
+
