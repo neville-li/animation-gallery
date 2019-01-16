@@ -1,15 +1,10 @@
+import setCanvas from "./_canvasSettings";
+
 const canvas0 = () => {
 
-    const canvas = document.querySelector("#canvas0");
-
-    const height = canvas.clientHeight;
-    const width = canvas.clientWidth;
-    canvas.style.background = "linear-gradient(to bottom, #131862, #546bab)";
-    canvas.setAttribute('width', width);
-    canvas.setAttribute('height', height);
-
+    const canvas = document.querySelector("canvas");
+    const {width, height} = setCanvas(canvas, canvas.clientWidth, canvas.clientHeight, "linear-gradient(to bottom, #131862, #546bab)");
     const c = canvas.getContext("2d");
-    let circles = [];
 
     class Circle {
         constructor(dx, dy, radius, color){
@@ -42,12 +37,6 @@ const canvas0 = () => {
         }
     }
 
-    for(let i = 0; i < width/20 ; i++){
-        circles.push(new Circle(1, 2.5, 4, "rgba(255,255,255,1)"));
-        circles.push(new Circle(0.7, 2, 3, "rgba(255,255,255,0.7)"));
-        circles.push(new Circle(0.3, 1.5, 2, "rgba(255,255,255,0.5)"));
-    }
-    
     const animate = () => {
         requestAnimationFrame(animate);
         c.clearRect(0, 0, width, height);
@@ -58,6 +47,16 @@ const canvas0 = () => {
             circle.draw();
         });
     }
+
+    let circles = [];
+
+    for(let i = 0; i < width/20 ; i++){
+        circles.push(new Circle(1, 2.5, 4, "rgba(255,255,255,1)"));
+        circles.push(new Circle(0.7, 2, 3, "rgba(255,255,255,0.7)"));
+        circles.push(new Circle(0.3, 1.5, 2, "rgba(255,255,255,0.5)"));
+    }
+    
+  
     animate();
 }
 

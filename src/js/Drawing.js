@@ -10,7 +10,7 @@ class Drawing extends React.Component {
     render(){
         return (
         <div>
-            <canvas className="drawing" id={`canvas${this.props.drawingID}`}></canvas>
+            <canvas className="drawing"></canvas>
         </div>   
     )}
 }
