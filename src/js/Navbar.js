@@ -9,13 +9,13 @@ const NavBar = (props) => {
                     <a href="#"><FontAwesomeIcon icon="angle-double-left" /></a>
                 </li>
                 <li>
-                    <a href="#"><FontAwesomeIcon icon="angle-left" /></a>
+                    <button onClick={props.toPrevious}><FontAwesomeIcon icon="angle-left" /></button>
                 </li>
                 <li>
                     <input type="text" maxLength="2" className="nav__navbar__input" placeholder={props.pageNumber}></input><span>/{props.total}</span>
                 </li>
                 <li>
-                    <a href="#"><FontAwesomeIcon icon="angle-right" /></a>
+                    <button onClick={props.toNext}><FontAwesomeIcon icon="angle-right" /></button>
                 </li>
                 <li>
                     <a href="#"><FontAwesomeIcon icon="angle-double-right" /></a>

@@ -1,17 +1,15 @@
 class Drawing {
-    constructor(parentElement){
-        this.parentElement = parentElement;
-    }
-    createCanvas(background, width=this.parentElement.clientWidth, height=this.parentElement.clientHeight){
+    static createCanvas(parentElement){
         const canvas = document.createElement("canvas");
         canvas.id = "canvasCreatedByDrawingClass";
-        canvas.width = width;
-        canvas.height = height;
-        canvas.style.background = background;
-        this.parentElement.appendChild(canvas);
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        // canvas.width = parentElement.clientWidth;
+        // canvas.height = parentElement.clientHeight;
+        parentElement.appendChild(canvas);
         return canvas;
     }
-    removeCanvas(){
+    static removeCanvas(){
         document.querySelector("#canvasCreatedByDrawingClass").remove();
     }
 }

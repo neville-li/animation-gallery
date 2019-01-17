@@ -1,8 +1,6 @@
-import Drawing from "./drawing";
-
-const canvas1 = () => {
-    const drawing = new Drawing(document.querySelector(".drawing"));
-    const canvas = drawing.createCanvas("white");
+const canvas1 = (canvas) => {
+   
+    canvas.style.background = "white";
     const {width, height} = canvas;
     const c = canvas.getContext("2d");
 
@@ -32,6 +30,11 @@ const canvas1 = () => {
     }
 
     let second = new secondHand(width/2, height/2, 4/5 * radius)
+        
+    c.beginPath();
+    c.arc(width/2, height/2, radius, 0, 2 * Math.PI, true);
+    c.stroke();
+    second.draw();
 
     setInterval(() => {
         c.clearRect(0, 0, width, height);

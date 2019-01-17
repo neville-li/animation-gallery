@@ -1,9 +1,6 @@
-import Drawing from "./drawing";
+const canvas0 = (canvas) => {
 
-const canvas0 = () => {
-
-    const drawing = new Drawing(document.querySelector(".drawing"));
-    const canvas = drawing.createCanvas("linear-gradient(to bottom, #131862, #546bab)");
+    canvas.style.background = "linear-gradient(to bottom, #131862, #546bab)";
     const {width, height} = canvas;
     const c = canvas.getContext("2d");
 
