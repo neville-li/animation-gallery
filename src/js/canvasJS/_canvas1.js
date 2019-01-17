@@ -13,26 +13,26 @@ const canvas1 = () => {
             this.x = x;
             this.y = y;
             this.length = length;
+            this.intVar = 0;
+            this.endX = this.x+ length;
+            this.endY = y;
         }
 
         draw(){
             c.beginPath();
             c.moveTo(this.x, this.y);
-            c.lineTo(width/2, height/2 - radius * 9/10);
+            c.lineTo(this.endX, this.endY);
             c.stroke();
         }
         update() {
-            // this.x = -this.x;
-            this.y = -this.y;
+            this.intVar++;
+            this.endX = this.x + this.length * Math.cos(2 * Math.PI * this.intVar/60);
+            this.endY = this.y + this.length * Math.sin(2 * Math.PI * this.intVar/60);
         }
     }
 
     let second = new secondHand(width/2, height/2, 4/5 * radius)
 
-    function animate() {
-        requestAnimationFrame(animate);
-        
-    }
     setInterval(() => {
         c.clearRect(0, 0, width, height);
         c.beginPath();

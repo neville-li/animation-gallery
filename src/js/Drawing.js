@@ -9,7 +9,7 @@ class Drawing extends React.Component {
 
     render(){
         return (
-        <div className="drawing"></div>   
+            <div className="drawing"></div>   
     )}
 }
 
