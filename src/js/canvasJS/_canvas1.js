@@ -1,8 +1,9 @@
-import setCanvas from "./_canvasSettings";
+import Drawing from "./drawing";
 
 const canvas1 = () => {
-    const canvas = document.querySelector("canvas");
-    const {width, height} = setCanvas(canvas, canvas.clientWidth, canvas.clientHeight, "white");
+    const drawing = new Drawing(document.querySelector(".drawing"));
+    const canvas = drawing.createCanvas("white");
+    const {width, height} = canvas;
     const c = canvas.getContext("2d");
 
     let radius = width > height ? height * 2/5 : width * 2 / 5;

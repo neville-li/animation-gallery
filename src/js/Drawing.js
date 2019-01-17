@@ -9,9 +9,7 @@ class Drawing extends React.Component {
 
     render(){
         return (
-        <div>
-            <canvas className="drawing"></canvas>
-        </div>   
+        <div className="drawing"></div>   
     )}
 }
 

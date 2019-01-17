@@ -3,8 +3,7 @@ import React from "react";
 import Drawing from "./Drawing";
 import Navbar from "./Navbar";
 
-
-let id = 1;
+let id = 0;
 let pageNumber = id + 1;
 
 class CanvasGalleryApp extends React.Component {

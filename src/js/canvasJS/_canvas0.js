@@ -1,9 +1,10 @@
-import setCanvas from "./_canvasSettings";
+import Drawing from "./drawing";
 
 const canvas0 = () => {
 
-    const canvas = document.querySelector("canvas");
-    const {width, height} = setCanvas(canvas, canvas.clientWidth, canvas.clientHeight, "linear-gradient(to bottom, #131862, #546bab)");
+    const drawing = new Drawing(document.querySelector(".drawing"));
+    const canvas = drawing.createCanvas("linear-gradient(to bottom, #131862, #546bab)");
+    const {width, height} = canvas;
     const c = canvas.getContext("2d");
 
     class Circle {
