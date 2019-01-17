@@ -4,8 +4,6 @@ class Drawing {
         canvas.id = "canvasCreatedByDrawingClass";
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        // canvas.width = parentElement.clientWidth;
-        // canvas.height = parentElement.clientHeight;
         parentElement.appendChild(canvas);
         return canvas;
     }

@@ -1,3 +1,5 @@
+import {Circle} from "./shapes";
+
 const canvas1 = (canvas) => {
    
     canvas.style.background = "white";
@@ -6,14 +8,20 @@ const canvas1 = (canvas) => {
 
     let radius = width > height ? height * 2/5 : width * 2 / 5;
 
-    class secondHand{
+    const clockFrame = new Circle({
+        x: width/2,
+        y: height/2,
+        radius
+    });
+
+    class Line {
         constructor(x, y, length){
             this.x = x;
             this.y = y;
             this.length = length;
-            this.intVar = 0;
-            this.endX = this.x+ length;
-            this.endY = y;
+            this.intVar = new Date().getSeconds();
+            this.endX = this.x + this.length * Math.cos(2 * Math.PI * this.intVar/60);
+            this.endY =  this.y + this.length * Math.sin(2 * Math.PI * this.intVar/60);
         }
 
         draw(){
@@ -23,27 +31,23 @@ const canvas1 = (canvas) => {
             c.stroke();
         }
         update() {
-            this.intVar++;
+            this.intVar = new Date().getSeconds();
             this.endX = this.x + this.length * Math.cos(2 * Math.PI * this.intVar/60);
             this.endY = this.y + this.length * Math.sin(2 * Math.PI * this.intVar/60);
         }
     }
 
-    let second = new secondHand(width/2, height/2, 4/5 * radius)
+    let secondHand = new Line(width/2, height/2, 4/5 * radius);
         
-    c.beginPath();
-    c.arc(width/2, height/2, radius, 0, 2 * Math.PI, true);
-    c.stroke();
-    second.draw();
+    clockFrame.draw(c);
+    secondHand.draw();
 
     setInterval(() => {
         c.clearRect(0, 0, width, height);
-        c.beginPath();
-        c.arc(width/2, height/2, radius, 0, 2 * Math.PI, true);
-        c.stroke();
+        clockFrame.draw(c);
 
-        second.draw();
-        second.update();
+        secondHand.draw();
+        secondHand.update();
     }, 1000);
    
 }
