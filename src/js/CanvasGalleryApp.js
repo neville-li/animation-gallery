@@ -4,16 +4,13 @@ import Display from "./Display";
 import Navbar from "./Navbar";
 import canvases from "./canvasJS/canvas";
 
-let id = 1;
-let pageNumber = id + 1;
-
 class CanvasGalleryApp extends React.Component {
     constructor(props){
         super(props);
         this.toNext = this.toNext.bind(this);
         this.toPrevious = this.toPrevious.bind(this);
         this.state = {
-            currentID: 0
+            currentID: 1
         }
     }
 
