@@ -10,7 +10,7 @@ class CanvasGalleryApp extends React.Component {
         this.toNext = this.toNext.bind(this);
         this.toPrevious = this.toPrevious.bind(this);
         this.state = {
-            currentID: 1
+            currentID: 0
         }
     }
 
