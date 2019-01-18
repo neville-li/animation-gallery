@@ -2,17 +2,17 @@ import {Circle, Line} from "./shapes";
 
 const canvas1 = (canvas) => {
    
-    canvas.style.background = "white";
+    canvas.style.background = "#d2ddd8";
     const {width, height} = canvas;
     const c = canvas.getContext("2d");
     const centerX = width / 2;
     const centerY = height / 2;
-    const radius = width > height ? height * 2/5 : width * 2 / 5;
+    const radius = width > height ? height * 2/5 : width * 2/5;
 
     class Hand extends Line {
         constructor(props){
             super(props);
-            this.timeUnit = props.timeUnit;
+            this.type = props.type;
             this.interval = props.interval;
             this.length = props.length;
             this.startX = centerX - 0.1 * this.length * Math.cos(2 * Math.PI * this.timeUnit / this.interval);
@@ -21,85 +21,87 @@ const canvas1 = (canvas) => {
             this.endY = centerY + 0.8 * this.length * Math.sin(2 * Math.PI * this.timeUnit / this.interval);
         }
         update(){
-            this.timeUnit = new Date().getSeconds();
-            this.startX = centerX - 0.1 * (this.length) * Math.cos(2 * Math.PI * this.timeUnit / this.interval);
-            this.startY = centerY - 0.1 * (this.length) * Math.sin(2 * Math.PI * this.timeUnit / this.interval);
-            this.endX =  centerX + 0.8 * (this.length) * Math.cos(2 * Math.PI * this.timeUnit / this.interval);
-            this.endY = centerY + 0.8 * (this.length) * Math.sin(2 * Math.PI * this.timeUnit / this.interval);
+            const timeUnit = {
+                secondHand: new Date().getSeconds(),
+                minuteHand: new Date().getMinutes(),
+                hourHand: new Date().getHours() + new Date().getMinutes() / 60
+            }[this.type];
+            this.startX = centerX - 0.1 * (this.length) * Math.cos((2 * Math.PI * timeUnit / this.interval) - 0.5 * Math.PI);
+            this.startY = centerY - 0.1 * (this.length) * Math.sin((2 * Math.PI * timeUnit / this.interval) - 0.5 * Math.PI);
+            this.endX =  centerX + 0.8 * (this.length) * Math.cos((2 * Math.PI * timeUnit / this.interval) - 0.5 * Math.PI);
+            this.endY = centerY + 0.8 * (this.length) * Math.sin((2 * Math.PI * timeUnit / this.interval) - 0.5 * Math.PI);
         }
     }
 
     const clockFrame = new Circle({
         x: centerX,
         y: centerY,
-        radius
+        radius,
+        strokeStyle: "#3A425C",
+        lineWidth: "40",
+        fillStyle: "white"
     });
 
     const secondHand = new Hand({
-        length: radius,
-        timeUnit: new Date().getSeconds(),
+        type: "secondHand",
+        length: 1.01 * radius,
         interval: 60,
-        lineWidth: 5,
+        lineWidth: 2,
         lineCap: "round",
-        strokeStyle: "red"
+        strokeStyle: "#c32439"
+    });
+
+    const minuteHand = new Hand({
+        type: "minuteHand",
+        length: 0.9 * radius,
+        interval: 60,
+        lineWidth: 6,
+        lineCap: "round",
+        strokeStyle: "#222222"
+    });
+
+    const hourHand = new Hand({
+        type: "hourHand",
+        length: 0.5 * radius,
+        interval: 12,
+        lineWidth: 8,
+        lineCap: "round",
+        strokeStyle: "#222222"
     });
 
     const clockCenter = new Circle({
         x: centerX,
         y: centerY,
-        radius: radius/20,
-        fillStyle: "black"
+        radius: radius/25,
+        fillStyle: "#3A425C",
+        strokeStyle: "#3A425C"
     });
-    
+
     function animate() {
         requestAnimationFrame(animate);
         c.clearRect(0, 0, width, height);
         clockFrame.draw(c);
+        for (let i = 1; i <= 12; i++){
+            c.font = '35pt Calibri';
+            c.textAlign = 'center';
+            c.textBaseline = "middle";
+            c.fillStyle = "#222222";
+            c.fillText(i, 
+            centerX + 0.77 * radius * Math.cos((2 * Math.PI * i / 12) - 0.5 * Math.PI),
+            centerY + 0.77 * radius * Math.sin((2 * Math.PI * i / 12) - 0.5 * Math.PI));
+        }  
         secondHand.draw(c);
+        minuteHand.draw(c);
+        hourHand.draw(c);
         clockCenter.draw(c);
         secondHand.update();
+        minuteHand.update();
+        hourHand.update();
     }
 
     animate();
+    console.log(`Hours ${new Date().getHours()}, Minute ${new Date().getMinutes()}, Seconds ${new Date().getSeconds()}`);
 
-    
-
-    // class Line {
-    //     constructor(x, y, length){
-    //         this.x = x;
-    //         this.y = y;
-    //         this.length = length;
-    //         this.intVar = new Date().getSeconds();
-    //         this.endX = this.x + this.length * Math.cos(2 * Math.PI * this.intVar/60);
-    //         this.endY =  this.y + this.length * Math.sin(2 * Math.PI * this.intVar/60);
-    //     }
-
-    //     draw(){
-    //         c.beginPath();
-    //         c.moveTo(this.x, this.y);
-    //         c.lineTo(this.endX, this.endY);
-    //         c.stroke();
-    //     }
-    //     update() {
-    //         this.intVar = new Date().getSeconds();
-    //         this.endX = this.x + this.length * Math.cos(2 * Math.PI * this.intVar/60);
-    //         this.endY = this.y + this.length * Math.sin(2 * Math.PI * this.intVar/60);
-    //     }
-    // }
-
-    // let secondHand = new Line(width/2, height/2, 4/5 * radius);
-        
-    
-    // secondHand.draw();
-
-    // setInterval(() => {
-    //     c.clearRect(0, 0, width, height);
-    //     clockFrame.draw(c);
-
-    //     secondHand.draw();
-    //     secondHand.update();
-    // }, 1000);
-   
 }
 
 export default canvas1;
