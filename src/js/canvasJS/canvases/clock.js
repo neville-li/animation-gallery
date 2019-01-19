@@ -1,6 +1,6 @@
-import {Circle, Line} from "./shapes";
+import {Circle, Line} from "../shapes";
 
-const canvas1 = (canvas) => {
+const clock = (canvas) => {
    
     canvas.style.background = "#d2ddd8";
     const {width, height} = canvas;
@@ -104,4 +104,4 @@ const canvas1 = (canvas) => {
 
 }
 
-export default canvas1;
+export default clock;

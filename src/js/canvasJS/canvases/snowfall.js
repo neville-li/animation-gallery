@@ -1,6 +1,6 @@
-import { Circle } from "./shapes";
+import { Circle } from "../shapes";
 
-const canvas0 = (canvas) => {
+const snowfall = (canvas) => {
 
     canvas.style.background = "linear-gradient(to bottom, #131862, #546bab)";
     const { width, height } = canvas;
@@ -71,4 +71,4 @@ const canvas0 = (canvas) => {
 }
 
 
-export default canvas0;
+export default snowfall;

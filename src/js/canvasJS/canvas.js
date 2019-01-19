@@ -1,10 +1,10 @@
-import canvas0 from "./_canvas0";
-import canvas1 from "./_canvas1";
+import snowfall from "./canvases/snowfall";
+import clock from "./canvases/clock";
 
 
 const canvases = [
-    canvas0,
-    canvas1
+    snowfall,
+    clock
 ]
 
 

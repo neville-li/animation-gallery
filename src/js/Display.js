@@ -3,22 +3,37 @@ import canvases from "./canvasJS/canvas";
 import Drawing from "./canvasJS/drawing"
 
 class Display extends React.Component {
+    constructor(props){
+        super(props);
+        this.loadCanvas = this.loadCanvas.bind(this);
+        this.reloadCanvas = this.reloadCanvas.bind(this);
+    }
 
-    componentDidMount(){
-        const canvas = Drawing.createCanvas(document.querySelector(".drawing"));
+    loadCanvas(){
+        const drawing = document.querySelector(".drawing");
+        const canvas = Drawing.appendCanvas(drawing);
         canvases[this.props.drawingID](canvas);
     }
 
-    componentDidUpdate(){
+    reloadCanvas(){
         Drawing.removeCanvas();
-        const canvas = Drawing.createCanvas(document.querySelector(".drawing"));
-        canvases[this.props.drawingID](canvas);
+        this.loadCanvas()
+    }
+
+    componentDidMount(){
+        this.loadCanvas();
+        window.onresize = this.reloadCanvas;
+    }
+
+    componentDidUpdate(){
+        this.reloadCanvas();
     }
 
     render(){
         return (
             <div className="drawing"></div>   
-    )}
+        )
+    }
 }
 
 export default Display;
