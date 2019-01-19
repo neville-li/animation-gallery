@@ -1,9 +1,10 @@
 .nav {
-    width: 50%;
+    width: 100%;
     background-color: rgb(255, 255, 255);
     position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     bottom: 0;
-    transform: translateX(50%);
     height: 5vh;
     border-radius: 15px;
     opacity: 0.15;
@@ -22,7 +23,7 @@
         flex-wrap: nowrap;
         justify-content: space-between;
         height: 100%;
-        width: 50%;
+        width: 70%;
         margin: 0 auto;
         list-style: none;
         font-size: 3.6rem;
@@ -31,6 +32,31 @@
         &__input {
             width: 20px;
             border:none;
+        }
+
+        &__button {
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+        
+    }
+}
+
+@media(min-width: $sm-breakpoint) {
+    .nav {
+        width: 70%;
+        &__navbar{
+            width: 65%;
+        }
+    }
+}
+
+@media(min-width: $md-breakpoint) {
+    .nav {
+        width: 50%;
+        &__navbar{
+            width: 65%;
         }
     }
 }

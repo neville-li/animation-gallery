@@ -24,8 +24,10 @@ const clock = (canvas) => {
             const timeUnit = {
                 secondHand: new Date().getSeconds(),
                 minuteHand: new Date().getMinutes(),
-                hourHand: Math.abs(new Date().getHours() - 12) + new Date().getMinutes() / 60
+                hourHand: (new Date().getHours() > 12 ? new Date().getHours() - 12 : new Date().getHours())
+                    + new Date().getMinutes() / 60
             }[this.type];
+
             this.startX = centerX - 0.1 * (this.length) * Math.cos((2 * Math.PI * timeUnit / this.interval) - 0.5 * Math.PI);
             this.startY = centerY - 0.1 * (this.length) * Math.sin((2 * Math.PI * timeUnit / this.interval) - 0.5 * Math.PI);
             this.endX =  centerX + 0.8 * (this.length) * Math.cos((2 * Math.PI * timeUnit / this.interval) - 0.5 * Math.PI);
@@ -38,7 +40,7 @@ const clock = (canvas) => {
         y: centerY,
         radius,
         strokeStyle: "#3A425C",
-        lineWidth: "40",
+        lineWidth: `${radius / 7}`,
         fillStyle: "white"
     });
 
@@ -82,7 +84,7 @@ const clock = (canvas) => {
         c.clearRect(0, 0, width, height);
         clockFrame.draw(c);
         for (let i = 1; i <= 12; i++){
-            c.font = '35pt Calibri';
+            c.font = `${radius/7}pt Calibri`;
             c.textAlign = 'center';
             c.textBaseline = "middle";
             c.fillStyle = "#222222";
