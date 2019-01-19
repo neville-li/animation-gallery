@@ -1,5 +1,5 @@
 import React from "react";
-import canvases from "./canvasJS/canvas";
+import canvases from "./canvasJS/canvases";
 import Drawing from "./canvasJS/drawing"
 
 class Display extends React.Component {
@@ -16,7 +16,7 @@ class Display extends React.Component {
     }
 
     reloadCanvas(){
-        Drawing.removeCanvas();
+        Drawing.removeCanvas(document.querySelector(".drawing > canvas"));
         this.loadCanvas()
     }
 

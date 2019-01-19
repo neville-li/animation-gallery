@@ -24,7 +24,7 @@ const clock = (canvas) => {
             const timeUnit = {
                 secondHand: new Date().getSeconds(),
                 minuteHand: new Date().getMinutes(),
-                hourHand: new Date().getHours() + new Date().getMinutes() / 60
+                hourHand: Math.abs(new Date().getHours() - 12) + new Date().getMinutes() / 60
             }[this.type];
             this.startX = centerX - 0.1 * (this.length) * Math.cos((2 * Math.PI * timeUnit / this.interval) - 0.5 * Math.PI);
             this.startY = centerY - 0.1 * (this.length) * Math.sin((2 * Math.PI * timeUnit / this.interval) - 0.5 * Math.PI);
@@ -100,8 +100,6 @@ const clock = (canvas) => {
     }
 
     animate();
-    console.log(`Hours ${new Date().getHours()}, Minute ${new Date().getMinutes()}, Seconds ${new Date().getSeconds()}`);
-
 }
 
 export default clock;

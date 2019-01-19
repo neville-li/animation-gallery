@@ -2,7 +2,7 @@ import React from "react";
 
 import Display from "./Display";
 import Navbar from "./Navbar";
-import canvases from "./canvasJS/canvas";
+import canvases from "./canvasJS/canvases";
 
 class CanvasGalleryApp extends React.Component {
     constructor(props){
