@@ -6,18 +6,18 @@
   "scripts": {
     "build": "webpack",
     "watch": "webpack --watch",
-    "live-server": "live-server index.html"
+    "dev-server": "webpack-dev-server"
   },
   "author": "Neville Li",
   "license": "ISC",
   "devDependencies": {
     "css-loader": "^2.1.0",
-    "live-server": "^1.2.1",
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.28.4",
-    "webpack-cli": "^3.2.1"
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14"
   },
   "dependencies": {
     "@babel/core": "^7.2.2",

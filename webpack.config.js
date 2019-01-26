@@ -7,6 +7,9 @@ module.exports = {
         path: path.join(__dirname, "public")
     },
     devtool: "cheap-module-eval-source-map",
+    devServer: {
+        contentBase: path.join(__dirname, "public")
+    },
     module : {
         rules: [
             {
