@@ -1,24 +1,20 @@
 const path = require("path");
-const webpack = require("webpack");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-    mode: "development",
+    mode: "production",
     entry: "./src/app.js",
     output: {
         filename: "bundle.js",
         path: path.join(__dirname, "public")
     },
-    devtool: "cheap-module-eval-source-map",
-    devServer: {
-        contentBase: path.join(__dirname, "public"),
-        hot: true,
-        open: true,
-        watchContentBase: true
-    },
+    devtool: "source-map",
     plugins: [
         new CleanWebpackPlugin(["public"]),
-        new webpack.HotModuleReplacementPlugin()
+        new HtmlWebpackPlugin({
+            title: "Output Mangement"
+        })
     ],
     watchOptions: {
         ignored: /node_modules/
