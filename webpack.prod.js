@@ -13,7 +13,7 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(["public"]),
         new HtmlWebpackPlugin({
-            title: "Output Mangement"
+            title: "Animation Gallery"
         })
     ],
     watchOptions: {
