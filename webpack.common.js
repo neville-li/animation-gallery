@@ -1,24 +1,20 @@
 const path = require("path");
 const webpack = require("webpack");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-    mode: "development",
     entry: "./src/app.js",
     output: {
         filename: "bundle.js",
         path: path.join(__dirname, "public")
     },
-    devtool: "cheap-module-eval-source-map",
-    devServer: {
-        contentBase: path.join(__dirname, "public"),
-        hot: true,
-        open: true,
-        watchContentBase: true
-    },
     plugins: [
         new CleanWebpackPlugin(["public"]),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new HtmlWebpackPlugin({
+            title: "Animation Gallery"
+        })
     ],
     watchOptions: {
         ignored: /node_modules/
