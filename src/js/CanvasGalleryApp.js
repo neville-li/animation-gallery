@@ -7,58 +7,63 @@ import canvases from "./canvasJS/canvases";
 class CanvasGalleryApp extends React.Component {
     constructor(props){
         super(props);
-        this.toFirst = this.toFirst.bind(this);
-        this.toLast = this.toLast.bind(this);
-        this.toNext = this.toNext.bind(this);
-        this.toPrevious = this.toPrevious.bind(this);
+        this.changePage = this.changePage.bind(this);
         this.state = {
             currentID: parseInt(localStorage.getItem("currentID"), 10) || 0,
             total: canvases.length
         }
     }
 
-    toFirst(){
-        this.setState((state) => {
-            const id = 0
-            localStorage.setItem("currentID", id);
-            return {
-                currentID: id
-            }
-        });
+    changePage(e){
+        let name = e.currentTarget.name;
+        switch(name){
+            case "first":
+                this.setState((state) => {
+                    const id = 0
+                    localStorage.setItem("currentID", id);
+                    return {
+                        currentID: id
+                    }
+                });
+                break;
+            case "last":
+                this.setState((state) => {
+                    const id = state.total - 1;
+                    localStorage.setItem("currentID", id);
+                    return {
+                        currentID: id
+                    }
+                });
+                break;
+            case "next":
+                this.setState((state) => {
+                    const id = state.currentID + 1
+                    localStorage.setItem("currentID", id);
+                    return {
+                        currentID: id
+                    }
+                });
+                break;
+            case "previous": 
+                this.setState((state) => {
+                    const id = state.currentID - 1
+                    localStorage.setItem("currentID", id);
+                    return {
+                        currentID: id
+                    }
+                });
+                break;
+            case "select":
+                const id = e.target.value - 1;
+                localStorage.setItem("currentID", id);
+                this.setState(() => {  
+                    return {
+                        currentID: id
+                    }
+                });
+                break; 
+        }
     }
-
-    toLast(){
-        this.setState((state) => {
-            const id = state.total - 1;
-            localStorage.setItem("currentID", id);
-            return {
-                currentID: id
-            }
-        });
-    }
-
-    toNext(){
-        this.setState((state) => {
-            const id = state.currentID + 1
-            localStorage.setItem("currentID", id);
-            return {
-                currentID: id
-            }
-        });
-    }
-
-    toPrevious(){
-        this.setState((state) => {
-            const id = state.currentID - 1
-            localStorage.setItem("currentID", id);
-            return {
-                currentID: id
-            }
-        });
-    }
-
-
-
     render() {
         return (
             <div className="position-relative">
@@ -66,10 +71,7 @@ class CanvasGalleryApp extends React.Component {
                 <Navbar
                     pageNumber={this.state.currentID + 1}
                     total={this.state.total}
-                    toFirst={this.toFirst}
-                    toLast={this.toLast}
-                    toNext={this.toNext}
-                    toPrevious={this.toPrevious}   
+                    changePage={this.changePage}
                 />
             </div>
         );
