@@ -12,7 +12,7 @@ library.add(faAngleDoubleRight);
 library.add(faAngleDoubleLeft);
 
 
-ReactDOM.render(<CanvasGalleryApp />, document.querySelector("body"));
+ReactDOM.render(<CanvasGalleryApp />, document.querySelector("#root"));
 
 
 

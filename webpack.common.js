@@ -13,7 +13,8 @@ module.exports = {
         new CleanWebpackPlugin(["public"]),
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
-            title: "Animation Gallery"
+            template: path.join(__dirname, "src", "index.html"),
+            filename: "index.html"
         })
     ],
     watchOptions: {
@@ -36,6 +37,13 @@ module.exports = {
                     "css-loader",
                     "sass-loader"
                 ]
+            },
+            {
+                test: /.(html)$/,
+                exclude:/node_modules/,
+                use: {
+                    loader: "html-loader"
+                }
             }
         ]
     }
